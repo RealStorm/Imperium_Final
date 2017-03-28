@@ -34,7 +34,7 @@
 		//if satsen kollar längden på variabeln pass1 och pass2
 		if((strlen($pass1)<8) || (strlen($pass2)<8)) {
 			$validation = false;
-			$_SESSION['e_pass'] = "Lösenordet måste bestå minst 8 tecken!";
+			$_SESSION['e_pass'] = "Lösenordet måste bestå av minst 8 tecken!";
 			$_SESSION['error_input'] = 'class="input_error"';
 		}
 

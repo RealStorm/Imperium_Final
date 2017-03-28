@@ -2,7 +2,7 @@
 	session_start();	
 
 	if((!isset($_SESSION['successreg']))) {
-		header('Location: index.php');
+		header('Location: ../index.php');
 		exit();
 	}
 	else {
@@ -30,7 +30,7 @@
 <head>
     <meta charset="utf-8">
     <title>Osadnicy gra-przegladarkowa</title>
-    <link href="styles/welcomestyle.css" rel="stylesheet">
+    <link href="../styles/welcomestyle.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
 </head>
 
@@ -38,7 +38,7 @@
 <div class="welcomeDiv">
 	<h1 class="welcomeH">Välkommen!</h1>
 	<p class="welcomeP">Ditt konto har nu skapats!</p>
-	<p class="welcomePA">Här kan du<a href="index.php"> logga in</a></p>
+	<p class="welcomePA">Här kan du<a href="../index.php"> logga in</a></p>
 </div>
 </body>
 

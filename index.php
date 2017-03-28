@@ -11,10 +11,10 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Välkommen till imperium</title>
+    <title>Välkommen till Imperium</title>
     <link href="styles/indexstyle.css" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
-    <script src="script/fontawesome.js"></script>
+    <script src="js/fontawesome.js"></script>
 </head>
 
 <body>

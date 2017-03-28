@@ -2,7 +2,7 @@
 	session_start();
 
 	if(!isset($_SESSION['logged'])){
-		header('Location: index.php');
+		header('Location: ../index.php');
 		exit();
 	}
 
@@ -17,16 +17,16 @@
 		// Med strlen String length kollar vi längden på våra inmatade lösenord
 		if((strlen($currpass)<8) || (strlen($pass1)<8) || (strlen($pass2)<8)){
 			$validation = false;
-			echo "Lösenorden måste minst vara 8 tecken!";
+			$_SESSION['changeErr'] = "Lösenordet måste minst innehålla 8 tecken!";
 		}
 		// != kollar om lösenorden är olika ifall dom är det blir det lite knasigt då dom ska vara samma!!!!!
 		if($pass1 != $pass2){
 			$validation = false;
-			echo "Lösenorden måste vara likadana!";
+			$_SESSION['changeErr'] = "Lösenorden måste vara likadana";
 		} 
 
 		//Här ska vi öppna en koppling till dbasen och kolla ifall det så kallade CURRPASS dvs aktuella lösenord stämmer med det du matade in i inputen.
-		require_once "../conn.php";
+		require_once "../php/conn.php";
 		mysqli_report(MYSQLI_REPORT_STRICT);
 
 		try{
@@ -41,11 +41,11 @@
 				$dbrecord = $resultat->fetch_assoc();
 				// med if statment kollar vi om våran currpass stämmer med våran "currpass" i databasen.
 				if(sha1($currpass) == $dbrecord['pass']) {
-					echo "super super dunder funkar";
-					$nyapass = $conn->query("UPDATE users SET pass ='".sha1($pass1)."' WHERE id ='".$_SESSION['id']."'");
+					$nyapass = $conn->query("UPDATE users SET pass ='".sha1($pass1)."' WHERE id ='".$_SESSION['id']."'");	
 				}
 				else {
-					$_SESSION['error_']
+					$validation = false;
+					$_SESSION['changeErr'] = "Gamla lösenoret är ej korrekt";
 				}
 
 			}
@@ -54,13 +54,9 @@
 			//echo '<br> Dev information helt enkelt..'.$e;
 		}
 
-
-
-
-
 		// Fint valideringen lyckades nu kan vi ändra ditt dåliga lösenord!
 		if($validation == true) {
-			echo "Validering lyckades ditt lösen kommer nu ändras bitch!";
+			$_SESSION['s_change'] = "Ditt lösenord har nu ändrats!";
 		}
 
 
@@ -75,19 +71,15 @@
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700" rel="stylesheet">
     <link href="../styles/spelstyle.css" rel="stylesheet">
     <link href="../styles/profilestyle.css" rel="stylesheet">
-    <script src="../script/fontawesome.js"></script>
+    <script src="../js/fontawesome.js"></script>
 </head>
 
 <body>
 	<header>
 		<nav>
 			<ul>
-				<li><a class="welcomeUser" href="#"><?php echo $_SESSION['user'];?></a></li>
-				<li><a href="#"><?php echo "Sten: ".$_SESSION['kamien'];?></a></li>
-				<li><a href="#"><?php echo "Vete: ".$_SESSION['zboze']; ?></a></li>
-				<li><a href="#"><?php echo "Guld: ".$_SESSION['zloto'];?></a></li>
-				<li><a href="#"><?php echo "Trä: ".$_SESSION['drewno'];?></a></li>
-				<li><a class="logOut" href="../wyloguj.php">Logga ut</a></li>
+				<li><a class="welcomeUser" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i><?php echo $_SESSION['user'];?></a></li>
+				<li><a class="logOut" href="../php/wyloguj.php">Logga ut<i class="fa fa-sign-out" aria-hidden="true"></i></a></li>
 			</ul>
 		</nav>
 	</header>
@@ -112,11 +104,25 @@
 				<input type="password" name="pass2" placeholder="Bekräfta Lösenord">
 				<br><br>
 				<input type="submit" name="submit" value="Spara">
+				<?php 
+					if(isset($_SESSION['s_change'])){
+						echo "<br>";
+						echo "<span class='changeSuccess'>".$_SESSION['s_change']."</span>";
+						unset($_SESSION['s_change']);
+					}
+				?>
+				<?php 
+					if(isset($_SESSION['changeErr'])){
+						echo "<br>";
+						echo "<span class='changeError'>".$_SESSION['changeErr']."</span>";
+						unset($_SESSION['changeErr']);
+					}
+				?>
 				<p class="premium"><?php echo "Premium tar slut: ".$_SESSION['premium'];?></p>
 			</form>
 		</div>	
 		<button class="buttonGame" onclick="window.location.href='../gra.php'">Gå tillbaka till spelet</button>
-		<button class="buttonBuyPremium">Köp mer premium!</button>
+		<button class="buttonBuyPremium"><a href="kupremium.php">Köp mer premium!</a></button>
 	</main>
 
 	<footer>

@@ -7,7 +7,7 @@
 		exit();
 	}
 
-	require_once "php/conn.php";
+	require_once "conn.php";
 
 	$conn = @new mysqli($host, $dbuser, $dbpassword, $dbname);
 
@@ -46,7 +46,7 @@
 
 					unset($_SESSION['error']);
 					$result->free_result();
-					header('Location: gra.php');
+					header('Location: ../gra.php');
 				}else{
 					$_SESSION['error'] = '<span class="error">Användaren hittades ej</span>';
 					header('Location: index.php');
@@ -55,7 +55,7 @@
 			else{
 				$_SESSION['error'] = '<span class="error">Användaren hittades ej</span>';
 				$_SESSION['error_input'] = 'class="input_error"';
-				header('Location: index.php');
+				header('Location: ../index.php');
 			}
 		} 
 		$conn->close();

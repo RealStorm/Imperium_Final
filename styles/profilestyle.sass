@@ -67,7 +67,7 @@
 		text-transform: capitalize
 		letter-spacing: 1px
 		margin-bottom: 5px
-
+		cursor: pointer
 	input[type=text]:focus,
 	input[type=password]:focus 
 		outline: 0
@@ -98,11 +98,15 @@
 		position: absolute
 		margin-top: 2.5%
 		margin-left: 2.7%
-
-	color: #009688
+		color: #009688
 	.premium
-		color: #363737
+		color: #009688
 		padding-bottom: 15px
+// ERROR STYLES
+.changeSuccess
+	color: green!important
+.changeError
+	color: red!important
 .buttonGame
 	position: absolute
 	width: 220px
@@ -112,6 +116,7 @@
 	margin-top: 5%
 	overflow: hidden
 
+	cursor: pointer
 	text-align: center
 	font-size: 18px
 	color: #F5F5F5
@@ -122,6 +127,8 @@
 	-webkit-box-shadow: 3px 3px 30px 5px rgba(204,204,204,1)
 	-moz-box-shadow: 3px 3px 30px 5px rgba(204,204,204,1)
 	box-shadow: 3px 3px 30px 5px rgba(204,204,204,1)
+	a 
+		padding: 18px
 .buttonBuyPremium
 	position: absolute
 	width: 220px
@@ -141,6 +148,10 @@
 	-webkit-box-shadow: 3px 3px 30px 5px rgba(204,204,204,1)
 	-moz-box-shadow: 3px 3px 30px 5px rgba(204,204,204,1)
 	box-shadow: 3px 3px 30px 5px rgba(204,204,204,1)
+	a 
+		padding: 17px
+		text-decoration: none
+		color: #F5F5F5
 
 
 
