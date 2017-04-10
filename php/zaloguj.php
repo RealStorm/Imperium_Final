@@ -3,7 +3,7 @@
 	session_start();
 
 	if((!isset($_POST['username'])) || (!isset($_POST['password']))) {
-		header('Location: index.php');
+		header('Location: ../index.php');
 		exit();
 	}
 
@@ -49,7 +49,7 @@
 					header('Location: ../gra.php');
 				}else{
 					$_SESSION['error'] = '<span class="error">Användaren hittades ej</span>';
-					header('Location: index.php');
+					header('Location: ../index.php');
 				}				
 			}
 			else{

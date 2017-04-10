@@ -21,6 +21,7 @@
 
         		if($conn->query("UPDATE users SET premium = DATE_ADD(premium, INTERVAL 100 DAY) WHERE id ='".$_SESSION['id']."'")){
         			$_SESSION['premium'] = $result['premium'];
+        			$_SESSION['fourteenDaysMessage'] = "<div class='fourteenDaysDiv'><div class='container'><span class='fourteenDaysSpan'>Grattis <br> Du köpte 100 dagar premium!</span><br><button class='backToGameButton'><a href='../gra.php'>Gå tillbaka spelet</a></button></div></div>";
         		}
         	}
         } catch (Expetion $e) {
@@ -42,6 +43,7 @@
 
         		if($conn->query("UPDATE users SET premium = DATE_ADD(premium, INTERVAL 7 DAY) WHERE id ='".$_SESSION['id']."'")){
         			$_SESSION['premium'] = $result['premium'];
+        			$_SESSION['fourteenDaysMessage'] = "<div class='fourteenDaysDiv'><div class='container'><span class='fourteenDaysSpan'>Grattis <br> Du köpte 7 dagar premium!</span><br><button class='backToGameButton'><a href='../gra.php'>Gå tillbaka spelet</a></button></div></div>";
         		}
         	}
         } catch (Expetion $e) {
@@ -64,6 +66,7 @@
 
 	        		if($conn->query("UPDATE users SET premium = DATE_ADD(premium, INTERVAL 14 DAY) WHERE id ='".$_SESSION['id']."'")){
 	        			$_SESSION['premium'] = $result['premium'];
+	        			$_SESSION['fourteenDaysMessage'] = "<div class='fourteenDaysDiv'><div class='container'><span class='fourteenDaysSpan'>Grattis <br> Du köpte 14 dagar premium!</span><br><button class='backToGameButton'><a href='../gra.php'>Gå tillbaka spelet</a></button></div></div>";
 	        		}
 	        	}
 	        } catch (Expetion $e) {
@@ -85,6 +88,7 @@
 
 		        		if($conn->query("UPDATE users SET premium = DATE_ADD(premium, INTERVAL 30 DAY) WHERE id ='".$_SESSION['id']."'")){
 		        			$_SESSION['premium'] = $result['premium'];
+		        			$_SESSION['fourteenDaysMessage'] = "<div class='fourteenDaysDiv'><div class='container'><span class='fourteenDaysSpan'>Grattis <br> Du köpte 30 dagar premium!</span><br><button class='backToGameButton'><a href='../gra.php'>Gå tillbaka spelet</a></button></div></div>";
 		        		}
 		        	}
 		        } catch (Expetion $e) {
@@ -110,6 +114,9 @@
 </head>
 
 <body>
+<div class="show">
+	<?php if(isset($_SESSION['fourteenDaysMessage'])) { echo $_SESSION['fourteenDaysMessage']; unset($_SESSION['fourteenDaysMessage']);} ?>
+</div>
 	<header>
 		<nav>
 			<ul>
